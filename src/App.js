@@ -23,14 +23,14 @@ const App = () => {
   // Out putting in the app
   return (
     <div className="App">
-      Displaying info to the frontend
+      <h1>People are DYING Bro. Shm.</h1>
       {/* Having problem with info.map and displaying info to the page */}
-      {info.map((infos) => (
+      {/* {info.map(infos => (
         <news
           Name={infos.countriesRoute.Name}
           description={infos.countriesRoute.description}
         />
-      ))}
+      ))} */}
     </div>
   );
 };
