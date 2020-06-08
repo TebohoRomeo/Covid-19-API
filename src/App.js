@@ -1,40 +1,85 @@
-import React, { useEffect, useState } from "react";
-import news from "./components/news";
-import "./App.css";
-import { render } from "@testing-library/react";
+import React from 'react';
+import { Component } from 'react';
+import './App.css';
 
-const App = () => {
-  // keeping the api
-  const api = "https://api.covid19api.com/countries";
+class App extends Component {
 
-  const [info, setInfo] = useState([]);
+  state = {
+    loading: true,
+    person: null,
+    list: null,
+    answer: null
+  }
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  // Calling the api
-  const getData = async () => {
+  async componentDidMount() {
+    const api = "https://api.covid19api.com/summary";
     const response = await fetch(api);
     const data = await response.json();
-    setInfo(data);
-    let divName = document.getElementsByClassName("App");
-    for (let i = 0; i < data.length; i++) {
-      let h1 = <h1>{data[i].Country}</h1>;
-      console.log(data[i].Country);
+    this.setState({person: data.Countries[154], loading: false})
+    console.log(data.Countries[154])
 
-      // return data[i].Country;
+    for (let i = 0; i < data.Countries.length; i++) {
+        let covidCountries = data.Countries[i].Country
+        console.log(covidCountries)
+        this.setState({list: covidCountries, loading: false})  
     }
-  };
-  // function to populate the app div
+  }
 
-  // Out putting in the app
-  return (
-    <div className="App">
-      <h1>People are Dying Bro. Shm.</h1>
-      
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="sections">
+       {this.state.loading || !this.state.person ? (
+        <div>People Die Bro. Shm.</div>    
+      ) : (
+        <div className="conditionTrue">
+
+        <select className="menu">
+          <option>{this.state.person.Country}</option>
+          <option>{this.state.sum}</option>
+          {this.state.covidCountries}
+        </select>
+
+        <header className="header">
+          <h1>{this.state.person.Country}</h1>
+          <p>{this.state.person.Date}</p>
+        </header>
+          
+
+        <section className="totalConfirmed">
+          <h3>TOTAL CONFIRMED</h3>
+          <div className="bigNumber one">{this.state.person.TotalConfirmed}</div>
+        </section>
+
+        <section className="totalRecovered">
+          <h3>TOTAL RECOVERED</h3>
+          <div className="bigNumber two"> {this.state.person.TotalRecovered}</div>
+        </section>
+
+        <section className="totalDeaths">
+          <h3>TOTAL DEATHS</h3>
+          <div className="bigNumber three"> {this.state.person.TotalDeaths}</div>
+        </section>
+          
+        <section className="newConfirmed">
+          <h5>NEW CONFIRMED</h5>
+          <div className="smallNumber one">{this.state.person.NewConfirmed}</div>
+        </section>
+
+        <section className="newRecovered">
+          <h5>NEW RECOVERED</h5>
+          <div className="smallNumber two">{this.state.person.NewRecovered}</div>
+        </section>
+
+        <section className="newDeaths">
+          <h5>NEW DEATHS</h5>
+          <div className="smallNumber three">{this.state.person.NewDeaths}</div>
+        </section>
+          
+        </div>
+      )}
+      </div>
+    );
+  }
+}
 
 export default App;
