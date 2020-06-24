@@ -69,25 +69,8 @@ class App extends Component {
             <h1>{this.state.results.Country}</h1>
             <p>{this.state.results.Date}</p>
           </header>
-
-          <section className="display">
-            <div className="totalConfirmed">
-              <h3>CONFIRMED CASES</h3>
-              <div className="bigNumber one">{this.state.results.Confirmed}</div>
-            </div>
-
-            <div className="totalRecovered">
-              <h3>RECOVERED CASES</h3>
-              <div className="bigNumber two"> {this.state.results.Recovered}</div>
-            </div>
-
-            <div className="totalDeaths">
-              <h3>DEATHS</h3>
-              <div className="bigNumber three"> {this.state.results.Deaths}</div>
-            </div>
-          </section>
             
-          {/* <section className="totalConfirmed">
+          <section className="totalConfirmed">
             <h3>CONFIRMED CASES</h3>
             <div className="bigNumber one">{this.state.results.Confirmed}</div>
           </section>
@@ -100,7 +83,7 @@ class App extends Component {
           <section className="totalDeaths">
             <h3>DEATHS</h3>
             <div className="bigNumber three"> {this.state.results.Deaths}</div>
-          </section> */}
+          </section>
       </div>
     );
   }
