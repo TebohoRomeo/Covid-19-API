@@ -81,12 +81,6 @@ class App extends Component {
           </section>
 
           <section className="totalDeaths">
-            <h3>NEW CASES</h3>
-            <div className="bigNumber three"> {this.state.results.Cases}</div>
-          </section>
-
-
-          <section className="totalDeaths">
             <h3>DEATHS</h3>
             <div className="bigNumber three"> {this.state.results.Deaths}</div>
           </section>
