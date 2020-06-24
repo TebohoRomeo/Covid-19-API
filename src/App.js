@@ -15,10 +15,13 @@ class App extends Component {
     const api = "https://api.covid19api.com/summary";
     const response = await fetch(api);
     const data = await response.json();
+    this.setState({person: data.Countries[154], loading: false})
+    console.log(data.Countries[154])
 
     for (let i = 0; i < data.Countries.length; i++) {
-      let covidCountries = data.Countries[i];
-      this.setState({person: covidCountries, loading: false})  
+        let covidCountries = data.Countries[i].Country
+        console.log(covidCountries)
+        this.setState({list: covidCountries, loading: false})  
     }
   }
 
